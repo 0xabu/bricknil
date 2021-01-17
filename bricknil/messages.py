@@ -330,8 +330,8 @@ class AttachedIOMessage(Message):
         if attach or virtual_attach:
             # Next two bytes (little-endian) is the device number (MSB is not used)
             device_id = msg_bytes.pop(0)
-            assert device_id in DEVICES, f'Unknown device with id {device_id} being attached (port {port}'
-            device_name = DEVICES[device_id]
+            #assert device_id in DEVICES, f'Unknown device with id {device_id} being attached (port {port})'
+            device_name = DEVICES.get(device_id, f'Unknown device 0x{device_id:x} on port {port}')
             self._add_port_info(dispatcher,port, 'id', device_id)
             self._add_port_info(dispatcher,port, 'name', device_name)
 
